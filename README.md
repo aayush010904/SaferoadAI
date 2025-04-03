@@ -86,8 +86,17 @@ Feel free to open an issue or submit a pull request if you’d like to contribut
 ## License
 This project is licensed under the MIT License.
 
-## Author
+## Author(s)
 **Aayush Chauhan**  
 📧 Contact: [aayushchauhan019@gmail.com](mailto:aayushchauhan019@gmail.com)  
 🔗 LinkedIn: [Aayush Chauhan](www.linkedin.com/in/aayushchauhan019)
 
+**Manish Sharma**
+
+📧 Contact: [manishshar@gmail.com](mailto:manishshar39@gmail.com)  
+🔗 LinkedIn: [Manish Sharma](https://www.linkedin.com/in/manishsharmadu/)
+
+**Ekansh Dubey**
+
+📧 Contact: [ekanshdubey@ee.du.ac.in](mailto:ekanshdubey@ee.du.ac.in)  
+🔗 LinkedIn: [Ekansh Dubey](www.linkedin.com/in/ekansh-dubey-0b2808227/)
