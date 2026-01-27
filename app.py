@@ -116,7 +116,10 @@ def detect_accident(video_path, output_dir="accident_frames"):
 
 # Run detection
 # Example usage
-video_path = "C:\\Users\\ASUS\\Desktop\\final_test.mp4"
-# video_path = "C:\\Users\\ASUS\\Desktop\\dash_cam.mp4"
-# video_path = "C:\\Users\\ASUS\\Desktop\\game_demo.mp4"
-detect_accident(video_path)
+# video_path = "C:\\Users\\ASUS\\Desktop\\final_test.mp4"
+if __name__ == "__main__":
+    video_path="/Users/apple/Desktop/SafeRoadAI_model/SaferoadAI/sample_videos/video1.mp4"
+    # video_path = "C:\\Users\\ASUS\\Desktop\\dash_cam.mp4"
+    # video_path = "C:\\Users\\ASUS\\Desktop\\game_demo.mp4"
+    detect_accident(video_path)
+

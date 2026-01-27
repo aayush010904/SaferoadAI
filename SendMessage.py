@@ -1,24 +1,43 @@
 import requests
+import os
 from Image2Url import image_to_data_url
+from dotenv import load_dotenv
 
-# API endpoint
-API_URL = "https://realtimechatapp-18ss.onrender.com/api/messages/send/USER_ID"
+load_dotenv()
 
-TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2U0NGY2YmNlMjhjNTk5NTU4OTUwN2IiLCJpYXQiOjE3NDMwMTU3ODcsImV4cCI6MTc0MzYyMDU4N30.PNeekg_Ki3Y1bKgtdPL_G6ZVJq5MxkrzQJyBGuGw7Ac"
-# Authentication headers
-HEADERS = {
-    "Content-Type": "application/json"
-}
+# Move configurations to the top so functions can see them
+API_URL = os.getenv("API_URL")
+RECIEVER_ID = os.getenv("RECIEVER_ID")
+HEADERS = {"Content-Type": "application/json"}
 
-COOKIES = {
-    "jwt": TOKEN
-}
+def getToken():
+    payload = {
+        "email": "cctv@gmail.com",
+        "password": "123456"
+    }
 
-RECIEVER_ID = "67d427151a03794271c0e3d2"
+    # Fixed f-string placement
+    response = requests.post(f"{API_URL}/auth/login", json=payload, headers=HEADERS)
+
+    try:
+        response_json = response.json()
+        # Use .get() to avoid KeyError if 'token' is missing
+        return response_json.get("token") 
+    except requests.exceptions.JSONDecodeError:
+        print("❌ Error: Response is not valid JSON!")
+        return None
+
+# Get the token first
+TOKEN = getToken()
+
+# Now set up cookies
+COOKIES = {"jwt": TOKEN}
 
 def send_message(text, image_path=None):
-    url = API_URL.replace("USER_ID", RECIEVER_ID)
+    # Fixed f-string placement
+    url = f"{API_URL}/messages/send/{RECIEVER_ID}"
 
+    image_url = None
     if image_path:
         image_url = image_to_data_url(image_path)
 
@@ -29,15 +48,8 @@ def send_message(text, image_path=None):
 
     response = requests.post(url, json=payload, headers=HEADERS, cookies=COOKIES)
 
-    print("\n🔍 Debugging API Response:")
-    print("Status Code:", response.status_code)
-    print("Response Text:", response.text)  # Print raw response before parsing
+    print(f"Status: {response.status_code}")
+    return response.json()
 
-    try:
-        response_json = response.json()  # Try parsing JSON
-        print("✅ Parsed JSON Response:", response_json)
-    except requests.exceptions.JSONDecodeError:
-        print("❌ Error: Response is not valid JSON!")
-
-# # Example call
-# send_message("Hello, this is an accident and the victim is: ", "./avatar.png")
+# Example call
+# send_message("Hello, this is an accident", "./avatar.png")
