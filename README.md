@@ -140,5 +140,3 @@ Feel free to open an issue or submit a pull request if you’d like to contribut
 ## License
 
 This project is licensed under the MIT License.
-
-### This Project is developed by Manish Sharma, Aayush Chauhan, Ekansh Dubey, Akhil and Pragyansh Verma for the Hack-4-Viksit Bharat Hackathon
